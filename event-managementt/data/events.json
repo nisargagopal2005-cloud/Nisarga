@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "Music Festival 2024",
+    "description": "Annual music festival featuring top artists",
+    "price": 1500,
+    "location": "Central Park, New York",
+    "event_date": "2024-12-15",
+    "max_participants": 5000,
+    "status": "active"
+  },
+  {
+    "id": 2,
+    "title": "Tech Conference 2024",
+    "description": "Latest technology trends and innovations",
+    "price": 2000,
+    "location": "Convention Center, Bangalore",
+    "event_date": "2024-11-20",
+    "max_participants": 1000,
+    "status": "active"
+  },
+  {
+    "id": 3,
+    "title": "Food & Wine Expo",
+    "description": "Gourmet food and wine tasting event",
+    "price": 1200,
+    "location": "Exhibition Grounds, Mumbai",
+    "event_date": "2024-10-25",
+    "max_participants": 800,
+    "status": "active"
+  }
+]
