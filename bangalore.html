@@ -1,0 +1,210 @@
+<html>
+<head>
+  <title>Bangalore Explorer</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: url("background.jpg") no-repeat center center fixed;
+      background-size: 100vw 100vh;
+    }
+
+    header {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      padding-bottom: 10px;
+    }
+
+    .logo {
+      height: 60px;
+    }
+
+    .header-container h1 {
+      margin: 0;
+      font-size: 2em;
+      color: black;
+    }
+
+    nav ul.menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      background-color: cyan;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .menu li {
+      margin: 0;
+    }
+
+    .menu a {
+      display: block;
+      padding: 12px 20px;
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .menu a:hover {
+      background-color: grey;
+    }
+
+    main {
+      padding: 30px;
+      color: white;
+      text-align: center;
+    }
+
+    section {
+      display: none; 
+      margin: 40px 0;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+    }
+
+    section.active {
+      display: block; 
+    }
+
+    section h2 {
+      color: cyan;
+    }
+  </style>
+</head>
+<body>
+  <header>
+   <div class="header-container">
+      <img src="logo.jpg" alt="Bangalore Explorer Logo" class="logo">
+      <h1>Bangalore Explorer</h1>
+    </div>
+    <nav>
+      <ul class="menu">
+        <li><a onclick="showSection('welcome')">Home</a></li>
+        <li><a onclick="showSection('home')">History</a></li>
+        <li><a onclick="showSection('climate')">Climate</a></li>
+        <li><a onclick="showSection('culture')">Culture</a></li>
+        <li><a onclick="showSection('temples')">Temples</a></li>
+        <li><a onclick="showSection('sports')">Sports</a></li>
+        <li><a onclick="showSection('malls')">Shopping Malls</a></li>
+        <li><a onclick="showSection('it')">IT Companies</a></li>
+        <li><a onclick="showSection('hotels')">Hotels</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="welcome" class="active">
+      <h2>Welcome to Bangalore Explorer</h2>
+      <p>Explore the tech, culture, and spirit of India's Silicon Valley...</p>
+    </section>
+<section id="home" class="active">
+      <h2>History of Bangalore </h2>
+       <img src="logo1.jpg" alt="History"width="300">
+      <p><strong></strong>Bangalore, officially known as Bengaluru, is the capital of Karnataka and a major hub for India's IT industry, often called the "Silicon Valley of India." Known for its pleasant climate, it is also a center for education, startups, and vibrant nightlife.</p>
+       <img src="logo2.jpg" alt="History"width="300">
+       <p><strong></strong>Bangalore Palace, built in 1878, is inspired by England’s Windsor Castle and features Tudor-style architecture with fortified towers and elegant wood carvings. It is a major tourist attraction showcasing royal history and grandeur.</p>
+    </section>
+<section id="climate" class="active">
+      <h2>Bangalore Climates</h2>
+       <img src="logo5.jpg" alt="climate"width="300">
+      <p><strong></strong>Bangalore has a moderate and pleasant climate throughout the year due to its elevation. Summers are mild, monsoons bring moderate rainfall, and winters are cool and comfortable.</p>
+       <img src="logo6.jpg" alt="climate"width="300">
+       <p><strong></strong>Bangalore enjoys a moderate climate year-round due to its elevation of about 900 meters (3,000 feet) above sea level. Summers (March to May) are warm but not extreme, with temperatures rarely exceeding 35°C. The city receives moderate to heavy rainfall during the monsoon season (June to September). Winters (November to February) are mild and pleasant, with temperatures ranging from 15°C to 28°C.</p>
+        <img src="logo7.jpg" alt="climate"width="300">
+
+    </section>
+<section id="culture" class="active">
+      <h2>Bangalore Culture</h2>
+       <img src="kar2.jpg" alt="culture"width="300">
+      <p><strong>Bangalore Karaga</strong>Bangalore Karaga is one of the city’s oldest and most traditional festivals, celebrated by the Tigala community. Held in the Dharmaraya Swamy Temple, it honors Draupadi as a goddess and symbolizes feminine power and community unity. The highlight is a night-time procession where a priest carries the sacred Karaga on his head. The festival reflects the city's deep-rooted cultural and mythological heritage.</p>
+       <img src="kar1.jpg" alt="culture"width="300">
+      <p><strong></strong>The Bangalore Karaga usually takes place in March or April and lasts for about 11 days. The main procession starts at midnight and continues till dawn, drawing thousands of devotees. Only men, traditionally from the Tigala community, participate in the rituals, often dressed as women to honor Draupadi. The festival highlights themes of courage, faith, and community bonding.</p>
+       <img src="gan2.jpg" alt="culture"width="300">
+      
+      <p><strong>Ganesha Chaturthi</strong>Ganesha Chaturthi is celebrated with great devotion in Bangalore, marked by the installation of beautifully crafted Ganesha idols in homes and public pandals. The city comes alive with music, cultural events, and vibrant processions. Eco-friendly celebrations are encouraged, and the festival ends with the visarjana (idol immersion) in lakes.</p>
+ <img src="gan1.jpg" alt="culture"width="300">
+       </section>
+    <section id="temples">
+      <h2>Temples</h2>
+      <img src="tem1.jpg" alt="Bull Temple"width="300">
+      <p><strong>Bull Temple:</strong> Bull Temple in Bangalore is a historic shrine dedicated to Nandi, featuring a massive granite statue and rich cultural 	significance..</p>
+      <img src="tem2.jpg" alt="Bull Temple" width="300">
+      <p><strong> </strong>It is located in Basavanagudi, Bangalore.Built in 1537 AD by Kempegowda I.Dedicated to Nandi (Bull), the vehicle of Lord Shiva.Features 	a 	massive monolithic Nandi statue: 15 ft high, 20 ft long.Constructed in Dravidian architectural style.Hosts the famous Kadalekai Parishe (Groundnut Fair) every   	year.Major spiritual and cultural site in Bangalore The Bull Temple, also known as Dodda Basavana Gudi, is one of the oldest temples in Bangalore, located in 	Basavanagudi. It is dedicated to Nandi, the sacred bull and vehicle of Lord Shiva. The temple features a massive monolithic statue of Nandi carved from a single 	granite rock. It is a significant religious and cultural landmark, attracting devotees and tourists alike..</p>
+      <img src="ban1.jpg" alt="Banashankari Temple" width="300">
+      <p><strong>Banashankari:</strong> A popular temple known for spiritual significance and architecture.</p>
+	<img src="ban2.jpg" alt="Banashankari Temple" width="300">
+	<p><strong></strong>The Banashankari Temple, located in Bangalore, is dedicated to Goddess Banashankari, a form of Parvati. It is one of the city's most revered 	temples, known for its spiritual importance and architectural beauty. The temple attracts thousands of devotees, especially during the Banashankari Jatre (annual 	fair). Built in the Dravidian style, it holds deep cultural and religious significance in Karnataka.</p>
+    </section>
+
+    <section id="sports">
+      <h2>Sports</h2>
+      <img src="crc1.jpg" alt="Cricket Stadium" width="300"><br>
+      <p><strong>Cricket:</strong> M. Chinnaswamy Stadium is a major cricket venue, home to Royal Challengers Bangalore.</p>
+	<img src="crc2.jpg" alt="Cricket Stadium" width="300"><br>
+	<p><strong></strong>M. Chinnaswamy Stadium is a prominent cricket stadium located in the heart of Bangalore, Karnataka. It is the home ground for the Royal 	Challengers Bangalore (RCB) IPL team and Karnataka's state cricket team. Known for its vibrant atmosphere and high-scoring matches, the stadium has hosted 	numerous international and domestic games. It is also notable for being one of the first stadiums to adopt solar energy for power.</p>
+      <img src="foot1.jpg" alt="Football Ground" width="300"><br>
+      <p><strong>Football:</strong> Football is gaining popularity with new clubs and youth leagues.</p>
+      <img src="foot2.jpg" alt="Football Ground" width="300"><br>
+      <p><strong></strong>The Bangalore Football Stadium is a well-known sports venue located in the city center of Bangalore, Karnataka. It primarily hosts football 	matches and has been home to various local and national-level tournaments. The stadium has played a key role in promoting football in the region. It also served 	as the former home ground for the Bengaluru FC team.</p>
+	 </section>
+
+    <section id="malls">
+      <h2>Shopping Malls</h2>
+      <img src="ori2.jpg" alt="Orion Mall" width="300">
+      <p><strong>Orion Mall:</strong> A premium shopping and entertainment destination in Rajajinagar.</p>
+      <img src="ori3.jpg" alt="Orion Mall" width="300">
+      <p><strong></strong>located in Rajajinagar, Bengaluru, is one of the city's largest and most popular shopping destinations. It features top 	international and Indian brands, a large food court, a lakeside promenade, and a premium PVR cinema. The mall is easily accessible via the Sandal Soap Factory 	metro station.</p>
+	<img src="for1.jpg" alt="Forum Mall" width="300"><br>
+      <p><strong>Forum Mall:</strong> One of the earliest and most popular malls in Bangalore.</p>
+	<img src="for2.jpg" alt="Forum Mall" width="300"><br>
+	<p><strong></strong>located in Koramangala, Bengaluru, is one of the city's first full-fledged shopping malls. It offers a mix of international and 	Indian 	retail brands, a spacious food court, and entertainment options like PVR Cinemas. The mall is a popular hangout spot, especially among college students 	and young professionals. Its central location makes it easily accessible from various parts of the city.</p>	
+ </section>
+
+    <section id="it">
+      <h2>IT Companies</h2>
+      <img src="inf1.jpg" alt="Infosys Campus" width="300">
+      <p><strong>Infosys:</strong> Global IT services leader founded in Bangalore.</p>
+      <img src="inf2.jpg" alt="Infosys Campus" width="300">
+      <p><strong></strong>Infosys is a global IT services and consulting company headquartered in Bengaluru, India. Founded in 1981, it provides services like software 	development, cloud computing, AI, and digital transformation to clients worldwide. Infosys is known for its innovation, strong ethical values, and massive 	employee base. It is one of the leading companies in India’s tech industry.</p>
+      <img src="wip1.jpg" alt="Wipro Campus" width="300">
+      <p><strong>Wipro:</strong> A tech giant with its headquarters in Bangalore.</p>
+      <img src="wip2.jpg" alt="Wipro Campus" width="300">
+      <p><strong></strong>Wipro Limited is a leading global information technology, consulting, and business process services company headquartered in India. Founded in 	1945, it has grown into one of the top IT firms worldwide. Wipro offers services in areas like cloud computing, AI, cybersecurity, and digital transformation. It 	operates in over 60 countries, serving clients across diverse industries.</p> 
+	
+    </section>
+
+    <section id="hotels">
+      <h2>Hotels</h2>
+     <img src="taj1.jpg" alt="Taj Hotel" width="300">
+      <p><strong>Taj:</strong> A luxury hotel offering world-class hospitality in Bangalore.</p>
+     <img src="taj2.jpg" alt="Taj Hotel" width="300">	
+	<p><strong></strong>Taj West End in Bengaluru is a luxury heritage hotel set amidst 20 acres of lush gardens, offering a peaceful retreat in the heart of the 	city. Established in 1887, it blends colonial charm with modern elegance and world-class hospitality.</p>
+      <img src="lel4.jpg" alt="Leela Palace" width="300">
+      <p><strong>Leela Palace:</strong> Known for its royal architecture and premium experience.</p>
+      <img src="lel2.jpg" alt="Leela Palace" width="300">
+	<p><strong></strong>The Leela Palace Bengaluru is a grand luxury hotel inspired by royal Indian architecture, set amid lush gardens in the heart of the city. It 	offers opulent rooms, fine dining, and world-class amenities, blending traditional elegance with modern comfort.</p>
+
+    </section>
+  </main>
+
+  <script>
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('main section');
+      sections.forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(sectionId).classList.add('active');
+    }
+  </script>
+</body>
+</html>
