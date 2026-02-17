@@ -1,0 +1,471 @@
+<html>
+<head>
+<title>Employee Salary Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<style>
+  :root {
+    --primary: #4361ee;
+    --secondary: #3f37c9;
+    --success: #4cc9f0;
+    --danger: #f72585;
+    --warning: #f8961e;
+    --info: #4895ef;
+    --light: #f8f9fa;
+    --dark: #212529;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+  }
+  
+  h2 {
+    text-align: center;
+    color: white;
+    margin-bottom: 25px;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    letter-spacing: 1px;
+  }
+  
+  .container {
+    background: rgba(255, 255, 255, 0.95);
+    max-width: 500px;
+    margin: auto;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+  
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 500;
+    color: #444;
+    font-size: 15px;
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+  }
+  
+  input:focus, select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+    background-color: white;
+  }
+  
+  input[readonly] {
+    background-color: #f0f4f8;
+    color: #333;
+    font-weight: 500;
+    border-color: #d1d9e6;
+  }
+  
+  .btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+  }
+  
+  .btn-group button {
+    min-width: 120px;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .btn-group button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+  }
+  
+  .btn-group button:focus:not(:active)::after {
+    animation: ripple 0.6s ease-out;
+  }
+  
+  @keyframes ripple {
+    0% {
+      transform: scale(0, 0);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(20, 20);
+      opacity: 0;
+    }
+  }
+  
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  }
+  
+  button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  button.submit { 
+    background: var(--success);
+    background: linear-gradient(135deg, #4cc9f0 0%, #4361ee 100%);
+  }
+  
+  button.submit:hover { 
+    background: linear-gradient(135deg, #3aa8d8 0%, #3a56d4 100%);
+  }
+  
+  button.clear { 
+    background: var(--danger);
+    background: linear-gradient(135deg, #f72585 0%, #b5179e 100%);
+  }
+  
+  button.clear:hover { 
+    background: linear-gradient(135deg, #e5177e 0%, #9c1489 100%);
+  }
+  
+  button.certificate { 
+    background: var(--warning);
+    background: linear-gradient(135deg, #f8961e 0%, #f3722c 100%);
+  }
+  
+  button.certificate:hover { 
+    background: linear-gradient(135deg, #e08a1b 0%, #d16626 100%);
+  }
+  
+  .result-fields {
+    margin-top: 20px;
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+  }
+  
+  .certificate-container {
+    margin-top: 25px;
+    padding: 20px;
+    border: 2px dashed var(--primary);
+    border-radius: 12px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    display: none;
+    animation: fadeInUp 0.5s ease-out;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  
+  .certificate-container h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  
+  .certificate-container h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    border-radius: 3px;
+  }
+  
+  .certificate-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .certificate-table tr:first-child td:first-child {
+    border-top-left-radius: 8px;
+  }
+  
+  .certificate-table tr:first-child td:last-child {
+    border-top-right-radius: 8px;
+  }
+  
+  .certificate-table tr:last-child td:first-child {
+    border-bottom-left-radius: 8px;
+  }
+  
+  .certificate-table tr:last-child td:last-child {
+    border-bottom-right-radius: 8px;
+  }
+  
+  .certificate-table td {
+    padding: 12px 15px;
+    border: 1px solid #dee2e6;
+  }
+  
+  .certificate-table td:first-child {
+    font-weight: 600;
+    width: 40%;
+    background: rgba(67, 97, 238, 0.1);
+    color: var(--primary);
+  }
+  
+  .certificate-table tr:nth-child(even) td {
+    background-color: rgba(0,0,0,0.02);
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .pulse {
+    animation: pulse 1.5s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(76, 201, 240, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(76, 201, 240, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(76, 201, 240, 0); }
+  }
+  
+  .floating { 
+    animation: floating 3s ease-in-out infinite;
+  }
+  
+  @keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+  }
+</style>
+</head>
+<body>
+
+<h2 class="floating">Employee Salary Calculator</h2>
+<div class="container">
+  <label>Employee No:</label>
+  <input type="text" id="empNo" oninput="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="Enter employee number">
+
+  <label>Employee Name:</label>
+  <input type="text" id="empName" oninput="this.value=this.value.replace(/[^a-zA-Z\s]/g,'');" placeholder="Enter employee name">
+
+  <label>Department:</label>
+  <select id="dept">
+    <option value="">Select Department</option>
+    <option value="Accounts">Accounts</option>
+    <option value="Clerk">Clerk</option>
+    <option value="Professor">Professor</option>
+  </select>
+
+  <label>Basic Salary:</label>
+  <input type="number" id="basic" placeholder="Enter basic salary">
+  <div class="result-fields" id="results">
+    <label>DA:</label>
+    <input type="number" id="da" readonly>
+    <label>TA:</label>
+    <input type="number" id="ta" readonly>
+    <label>HRA:</label>
+    <input type="number" id="hra" readonly>
+    <label>PF:</label>
+    <input type="number" id="pf" readonly>
+    <label>Total:</label>
+    <input type="number" id="total" readonly>
+    <label>Net Salary:</label>
+    <input type="number" id="net" readonly>
+  </div>
+  <div class="btn-group" id="buttonGroup">
+    <button class="submit animate__animated" onclick="calculate()">Calculate</button>
+    <button class="clear animate__animated" onclick="clearForm()">Clear</button>
+    <button class="certificate animate__animated" style="display:none;" onclick="generateCertificate()">Generate Slip</button>
+  </div>
+  <div class="certificate-container" id="certificate">
+    <h3>Employee Salary Certificate</h3>
+    <div id="certDetails"></div>
+  </div>
+</div>
+
+<script>
+function animateButton(btn) {
+  btn.classList.add('animate__pulse');
+  setTimeout(() => {
+    btn.classList.remove('animate__pulse');
+  }, 1000);
+}
+
+function calculate() {
+  let dept = document.getElementById("dept").value;
+  let basic = parseFloat(document.getElementById("basic").value);
+  let name = document.getElementById("empName").value;
+  let empNo = document.getElementById("empNo").value;
+
+  if (!dept || isNaN(basic) || basic <= 0 || name.trim() === "" || empNo.trim() === "") {
+    alert("Please fill all fields correctly.");
+    return;
+  }
+
+  let da=0, ta=0, hra=0, pf=0;
+
+  if (dept === "Accounts") {
+    da = basic * 0.60;
+    ta = basic * 0.30;
+    hra = basic * 0.13;
+    pf = basic * 0.125;
+  }
+  else if (dept === "Clerk") {
+    da = basic * 0.60;
+    ta = basic * 0.40;
+    hra = basic * 0.15;
+    pf = basic * 0.10;
+  }
+  else if (dept === "Professor") {
+    da = basic * 0.30;
+    ta = basic * 0.12;
+    hra = basic * 0.10;
+    pf = basic * 0.10;
+  }
+
+  let total = basic + da + ta + hra;
+  let net = total - pf;
+
+  document.getElementById("da").value = da.toFixed(2);
+  document.getElementById("ta").value = ta.toFixed(2);
+  document.getElementById("hra").value = hra.toFixed(2);
+  document.getElementById("pf").value = pf.toFixed(2);
+  document.getElementById("total").value = total.toFixed(2);
+  document.getElementById("net").value = net.toFixed(2);
+
+  document.getElementById("results").style.display = "block";
+  document.querySelector(".certificate").style.display = "inline-block";
+  setTimeout(() => {
+    let certBtn = document.querySelector(".certificate");
+    certBtn.classList.add('pulse');
+    setTimeout(() => certBtn.classList.remove('pulse'), 2000);
+  }, 500);
+}
+
+function clearForm() {
+  document.querySelectorAll("input, select").forEach(el => el.value = "");
+  document.getElementById("results").style.display = "none";
+  document.getElementById("certificate").style.display = "none";
+  document.querySelector(".certificate").style.display = "none";
+}
+
+function generateCertificate() {
+  let empNo = document.getElementById("empNo").value;
+  let name = document.getElementById("empName").value;
+  let dept = document.getElementById("dept").value;
+  let basic = document.getElementById("basic").value;
+  let da = document.getElementById("da").value;
+  let ta = document.getElementById("ta").value;
+  let hra = document.getElementById("hra").value;
+  let pf = document.getElementById("pf").value;
+  let total = document.getElementById("total").value;
+  let net = document.getElementById("net").value;
+
+  let certHTML = `
+    <table class="certificate-table">
+      <tr>
+        <td>Employee No</td>
+        <td>${empNo}</td>
+      </tr>
+      <tr>
+        <td>Employee Name</td>
+        <td>${name}</td>
+      </tr>
+      <tr>
+        <td>Department</td>
+        <td>${dept}</td>
+      </tr>
+      <tr>
+        <td>Basic Salary</td>
+        <td>₹${parseFloat(basic).toFixed(2)}</td>
+      </tr>
+      <tr>
+        <td>Dearness Allowance (DA)</td>
+        <td>₹${da}</td>
+      </tr>
+      <tr>
+        <td>Travel Allowance (TA)</td>
+        <td>₹${ta}</td>
+      </tr>
+      <tr>
+        <td>House Rent Allowance (HRA)</td>
+        <td>₹${hra}</td>
+      </tr>
+      <tr>
+        <td>Provident Fund (PF)</td>
+        <td>₹${pf}</td>
+      </tr>
+      <tr>
+        <td>Gross Salary</td>
+        <td>₹${total}</td>
+      </tr>
+      <tr>
+        <td><strong>Net Salary</strong></td>
+        <td><strong>₹${net}</strong></td>
+      </tr>
+    </table>
+    <p style="text-align: center; margin-top: 15px; font-style: italic; color: #666;">
+      This is a computer generated certificate and doesn't require signature.
+    </p>
+  `;
+
+  document.getElementById("certDetails").innerHTML = certHTML;
+  document.getElementById("certificate").style.display = "block";
+  document.getElementById("certificate").classList.add('animate_animated', 'animate_fadeInUp');
+  setTimeout(() => {
+    document.getElementById("certificate").classList.remove('animate_animated', 'animate_fadeInUp');
+  }, 1000);
+}
+document.querySelectorAll('.btn-group button').forEach(btn => {
+  btn.addEventListener('click', function() {
+    animateButton(this);
+  });
+});
+</script>
+
+</body>
+</html>
