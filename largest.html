@@ -1,0 +1,122 @@
+<html>
+<head>
+  <title>Largest and Smallest of 3 Numbers</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #89f7fe, #66a6ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    table {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      box-shadow: 0px 6px 15px rgba(0,0,0,0.25);
+      width: 420px;
+      border: 3px solid #333;
+      border-collapse: collapse;
+      text-align: center;
+    }
+    th, td {
+      border: 2px solid #333;
+      padding: 15px;
+    }
+    h2 {
+      margin: 0;
+      color: #333;
+      font-size: 1.8rem;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 1rem;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      padding: 12px 25px;
+      margin: 5px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+    button:hover {
+      transform: scale(1.05);
+    }
+    .reset-btn {
+      background: #f44336;
+    }
+    .reset-btn:hover {
+      background: #e53935;
+    }
+    .result {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #222;
+      min-height: 25px; /* keeps space for result */
+    }
+  </style>
+</head>
+<body>
+  <table>
+    <tr>
+      <th colspan="2"><h2>Find Largest & Smallest</h2></th>
+    </tr>
+    <tr>
+      <td>First Number</td>
+      <td><input type="number" id="num1" placeholder="Enter first number"></td>
+    </tr>
+    <tr>
+      <td>Second Number</td>
+      <td><input type="number" id="num2" placeholder="Enter second number"></td>
+    </tr>
+    <tr>
+      <td>Third Number</td>
+      <td><input type="number" id="num3" placeholder="Enter third number"></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button onclick="findLargestSmallest()">Check</button>
+        <button class="reset-btn" onclick="resetFields()">Reset</button>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="result" id="output">👉 Result will appear here</td>
+    </tr>
+  </table>
+
+  <script>
+    function findLargestSmallest() {
+      let n1 = parseFloat(document.getElementById("num1").value);
+      let n2 = parseFloat(document.getElementById("num2").value);
+      let n3 = parseFloat(document.getElementById("num3").value);
+
+      if (isNaN(n1) || isNaN(n2) || isNaN(n3)) {
+        document.getElementById("output").innerText = "⚠ Please enter all 3 numbers!";
+        return;
+      }
+
+      let largest = Math.max(n1, n2, n3);
+      let smallest = Math.min(n1, n2, n3);
+
+      document.getElementById("output").innerText = 
+        ✅ Largest: ${largest} | Smallest: ${smallest};
+    }
+
+    function resetFields() {
+      document.getElementById("num1").value = "";
+      document.getElementById("num2").value = "";
+      document.getElementById("num3").value = "";
+      document.getElementById("output").innerText = "👉 Result will appear here";
+    }
+  </script>
+</body>
+</html>

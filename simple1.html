@@ -1,0 +1,101 @@
+<html>
+<head>
+  <title>Simple Interest Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, lightblue, white);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 320px;
+    }
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    input {
+      width: 90%;
+      padding: 8px;
+      margin: 10px 0;
+      border: 1px solid #aaa;
+      border-radius: 6px;
+    }
+    button {
+      border: none;
+      padding: 10px 20px;
+      margin: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+    .calc-btn {
+      background: lightblue;
+    }
+    .calc-btn:hover {
+      background: deepskyblue;
+      color: white;
+    }
+    .reset-btn {
+      background: #ccc;
+    }
+    .reset-btn:hover {
+      background: #999;
+      color: white;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Simple Interest Calculator</h2>
+    <input type="number" id="principal" placeholder="Enter Principal (P)">
+    <input type="number" id="rate" placeholder="Enter Rate (%)">
+    <input type="number" id="time" placeholder="Enter Time (years)">
+    <br>
+    <button class="calc-btn" onclick="calculateSI()">Calculate</button>
+    <button class="reset-btn" onclick="resetForm()">Reset</button>
+    <div class="result" id="output"></div>
+  </div>
+
+  <script>
+    function calculateSI() {
+      let P = parseFloat(document.getElementById("principal").value);
+      let R = parseFloat(document.getElementById("rate").value);
+      let T = parseFloat(document.getElementById("time").value);
+
+      if (isNaN(P) || isNaN(R) || isNaN(T)) {
+        document.getElementById("output").innerHTML = "⚠️ Please enter valid numbers!";
+        return;
+      }
+
+      let SI = (P * R * T) / 100;
+      let total = P + SI;
+
+      document.getElementById("output").innerHTML = 
+        `💰 Simple Interest: ₹${SI.toFixed(2)} <br> 💵 Total Amount: ₹${total.toFixed(2)}`;
+    }
+
+    function resetForm() {
+      document.getElementById("principal").value = "";
+      document.getElementById("rate").value = "";
+      document.getElementById("time").value = "";
+      document.getElementById("output").innerHTML = "";
+    }
+  </script>
+</body>
+</html>

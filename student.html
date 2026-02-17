@@ -1,0 +1,747 @@
+<html>
+<head>
+ <title>Student Result</title>
+ <style>
+        :root {
+            --primary: #6a11cb;
+            --secondary: #2575fc;
+            --accent: #ff6b6b;
+            --success: #20bf6b;
+            --warning: #fa8231;
+            --info: #2d98da;
+            --light: #f7f7f7;
+            --dark: #130f40;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background: white;
+            width: 100%;
+            max-width: 1000px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        h1 {
+            text-align: center;
+            color: var(--dark);
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        label {
+            width: 180px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-right: 10px;
+        }
+        
+        input[type="text"], 
+        input[type="number"], 
+        select {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background-color: var(--light);
+        }
+        
+        input[type="text"]:focus, 
+        input[type="number"]:focus, 
+        select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+            outline: none;
+            background-color: white;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+        }
+        
+        .radio-group label {
+            width: auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        input[type="radio"] {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            transition: all 0.2s;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        input[type="radio"]:checked {
+            border-color: var(--primary);
+            background-color: var(--primary);
+        }
+        
+        input[type="radio"]:checked::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+        
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' 		    stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 15px;
+        }
+        
+        h3 {
+            color: var(--primary);
+            margin: 25px 0 15px;
+            font-size: 1.4rem;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            height: 70%;
+            width: 5px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        #calculate {
+            background: linear-gradient(135deg, var(--success), #26de81);
+            color: white;
+        }
+        
+        #reset {
+            background: linear-gradient(135deg, var(--accent), #ff7675);
+            color: white;
+        }
+        
+        #print-marksheet {
+            background: linear-gradient(135deg, var(--secondary), #4b6cb7);
+            color: white;
+            display: none;
+        }
+        .marksheet {
+            display: none;
+            margin-top: 40px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .marksheet-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .marksheet-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .marksheet-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .marksheet-body {
+            padding: 20px;
+        }
+        
+        .student-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .info-item {
+            margin-bottom: 5px;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: var(--dark);
+            display: inline-block;
+            width: 120px;
+        }
+        
+        .marks-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .marks-table th {
+            background: linear-gradient(135deg, #f6f9fc, #eef2f5);
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid #ddd;
+        }
+        
+        .marks-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .marks-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .marks-table tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .summary {
+            margin-top: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #f6f9fc, #eef2f5);
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .summary-item {
+            padding: 10px;
+        }
+        
+        .summary-label {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        
+        .summary-value {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .grade {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+        .grade-Aplus { background: linear-gradient(135deg, #ff9a44, #f83600); color: white; }
+        .grade-A { background: linear-gradient(135deg, #ff758c, #ff7eb3); color: white; }
+        .grade-Bplus { background: linear-gradient(135deg, #a18cd1, #fbc2eb); color: white; }
+        .grade-B { background: linear-gradient(135deg, #84fab0, #8fd3f4); color: var(--dark); }
+        .grade-C { background: linear-gradient(135deg, #f6d365, #fda085); color: var(--dark); }
+        .grade-D { background: linear-gradient(135deg, #f093fb, #f5576c); color: white; }
+        .grade-F { background: linear-gradient(135deg, #868f96, #596164); color: white; }
+        
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px dashed #ddd;
+            color: #777;
+        }
+        
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            .marksheet, .marksheet * {
+                visibility: visible;
+            }
+            .marksheet {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+                border: none;
+            }
+            #print-marksheet {
+                display: none !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .form-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            label {
+                width: 100%;
+                margin-bottom: 8px;
+            }
+            
+            input[type="text"], 
+            input[type="number"], 
+            select,
+            .radio-group {
+                width: 100%;
+            }
+            
+            .buttons {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .student-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .summary {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Student Result</h1>
+        
+        <div class="form-group">
+            <label for="regNumber">Registration Number:</label>
+            <input type="text" id="regNumber" placeholder="Enter registration number" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="name">Student Name:</label>
+            <input type="text" id="name" placeholder="Enter student name" required>
+        </div>
+        
+        <div class="form-group">
+            <label>Gender:</label>
+            <div class="radio-group">
+                <input type="radio" id="male" name="sex" value="male" checked>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="sex" value="female">
+                <label for="female">Female</label>
+                <input type="radio" id="other" name="sex" value="other">
+                <label for="other">Other</label>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="course">Course Program:</label>
+            <select id="course" required>
+                <option value="">-- Select Course --</option>
+                <option value="BCA">BCA (Bachelor of Computer Applications)</option>
+                <option value="BBA">BBA (Bachelor of Business Administration)</option>
+                <option value="BCOM">BCOM (Bachelor of Commerce)</option>
+                <option value="BSC">BSC (Bachelor of Science)</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="semester">Current Semester:</label>
+            <select id="semester" required>
+                <option value="">-- Select Semester --</option>
+                <option value="1st">1st Semester</option>
+                <option value="2nd">2nd Semester</option>
+                <option value="3rd">3rd Semester</option>
+                <option value="4th">4th Semester</option>
+                <option value="5th">5th Semester</option>
+                <option value="6th">6th Semester</option>
+            </select>
+        </div>
+        
+        <h3>📚 Subject Marks (Out of 100)</h3>
+        
+        <div class="form-group">
+            <label for="subject1">Computer Science:</label>
+            <input type="number" id="subject1" min="0" max="100" placeholder="Enter marks" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="subject2">Mathematics:</label>
+            <input type="number" id="subject2" min="0" max="100" placeholder="Enter marks" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="subject3">English:</label>
+            <input type="number" id="subject3" min="0" max="100" placeholder="Enter marks" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="subject4">Science:</label>
+            <input type="number" id="subject4" min="0" max="100" placeholder="Enter marks" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="subject5">Social Studies:</label>
+            <input type="number" id="subject5" min="0" max="100" placeholder="Enter marks" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="subject6">Elective Subject:</label>
+            <input type="number" id="subject6" min="0" max="100" placeholder="Enter marks" required>
+        </div>
+        
+        <div class="buttons">
+            <button id="reset">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                    <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                </svg>
+                Reset Form
+            </button>
+            <button id="calculate">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 				4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                    <path d="M12.684 11.523v-2.3h2.261v-.61H12.684V7.801h2.261v-.61H12.684V6.063h.61L15 5.125v9.25l-1.716-.002-.6-.003v-2.845zM4.5 					8.362h1.696v2.176h.579v-2.176h1.696v-.592H6.775v-1.77h-.578v1.77H4.5v.592z"/>
+                </svg>
+                Generate Marksheet
+            </button>
+            <button id="print-marksheet">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
+                    <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 			0 1z"/>
+                </svg>
+                Print Marksheet
+            </button>
+        </div>
+        <div class="marksheet" id="marksheet">
+            <div class="marksheet-header">
+                <div class="marksheet-title">OFFICIAL MARKSHEET</div>
+                <div class="marksheet-subtitle">Academic Year 2023-2024</div>
+            </div>
+            
+            <div class="marksheet-body">
+                <div class="student-info">
+                    <div class="info-item">
+                        <span class="info-label">Registration No:</span>
+                        <span id="ms-regNumber">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Student Name:</span>
+                        <span id="ms-name">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Gender:</span>
+                        <span id="ms-gender">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Course:</span>
+                        <span id="ms-course">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Semester:</span>
+                        <span id="ms-semester">-</span>
+                    </div>
+                </div>
+                
+                <table class="marks-table">
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Marks Obtained</th>
+                            <th>Maximum Marks</th>
+                            <th>Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Computer Science</td>
+                            <td id="ms-subject1">-</td>
+                            <td>100</td>
+                            <td id="ms-remark1">-</td>
+                        </tr>
+                        <tr>
+                            <td>Mathematics</td>
+                            <td id="ms-subject2">-</td>
+                            <td>100</td>
+                            <td id="ms-remark2">-</td>
+                        </tr>
+                        <tr>
+                            <td>English</td>
+                            <td id="ms-subject3">-</td>
+                            <td>100</td>
+                            <td id="ms-remark3">-</td>
+                        </tr>
+                        <tr>
+                            <td>Science</td>
+                            <td id="ms-subject4">-</td>
+                            <td>100</td>
+                            <td id="ms-remark4">-</td>
+                        </tr>
+                        <tr>
+                            <td>Social Studies</td>
+                            <td id="ms-subject5">-</td>
+                            <td>100</td>
+                            <td id="ms-remark5">-</td>
+                        </tr>
+                        <tr>
+                            <td>Elective Subject</td>
+                            <td id="ms-subject6">-</td>
+                            <td>100</td>
+                            <td id="ms-remark6">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="summary">
+                    <div class="summary-item">
+                        <div class="summary-label">Total Marks</div>
+                        <div class="summary-value" id="ms-total">- / 600</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-label">Percentage</div>
+                        <div class="summary-value" id="ms-percentage">- %</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-label">Grade</div>
+                        <div class="summary-value"><span id="ms-grade">-</span></div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-label">Highest Marks</div>
+                        <div class="summary-value" id="ms-highest">-</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="summary-label">Lowest Marks</div>
+                        <div class="summary-value" id="ms-lowest">-</div>
+                    </div>
+                </div>
+                
+                <div class="footer">
+                    <p>This is a computer generated marksheet. No signature is required.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('calculate').addEventListener('click', function() {
+            const requiredFields = ['regNumber', 'name', 'course', 'semester', 
+                                  'subject1', 'subject2', 'subject3', 
+                                  'subject4', 'subject5', 'subject6'];
+            
+            let isValid = true;
+            requiredFields.forEach(field => {
+                const element = document.getElementById(field);
+                if (!element.value.trim()) {
+                    element.style.borderColor = 'red';
+                    isValid = false;
+                } else {
+                    element.style.borderColor = '#e0e0e0';
+                }
+            });
+            
+            if (!isValid) {
+                alert('Please fill in all required fields!');
+                return;
+            }
+            const subjects = [
+                parseInt(document.getElementById('subject1').value),
+                parseInt(document.getElementById('subject2').value),
+                parseInt(document.getElementById('subject3').value),
+                parseInt(document.getElementById('subject4').value),
+                parseInt(document.getElementById('subject5').value),
+                parseInt(document.getElementById('subject6').value)
+            ];
+            for (let mark of subjects) {
+                if (mark < 0 || mark > 100 || isNaN(mark)) {
+                    alert('All marks must be between 0 and 100!');
+                    return;
+                }
+            }
+            const total = subjects.reduce((sum, mark) => sum + mark, 0);
+            const percentage = (total / 600 * 100).toFixed(2);
+            const highest = Math.max(...subjects);
+            const lowest = Math.min(...subjects);
+            let grade, gradeClass;
+            if (percentage >= 90) {
+                grade = 'A+';
+                gradeClass = 'grade-Aplus';
+            }
+            else if (percentage >= 80) {
+                grade = 'A';
+                gradeClass = 'grade-A';
+            }
+            else if (percentage >= 70) {
+                grade = 'B+';
+                gradeClass = 'grade-Bplus';
+            }
+            else if (percentage >= 60) {
+                grade = 'B';
+                gradeClass = 'grade-B';
+            }
+            else if (percentage >= 50) {
+                grade = 'C';
+                gradeClass = 'grade-C';
+            }
+            else if (percentage >= 40) {
+                grade = 'D';
+                gradeClass = 'grade-D';
+            }
+            else {
+                grade = 'F (Fail)';
+                gradeClass = 'grade-F';
+            }
+            document.getElementById('ms-regNumber').textContent = document.getElementById('regNumber').value;
+            document.getElementById('ms-name').textContent = document.getElementById('name').value;
+            document.getElementById('ms-gender').textContent = document.querySelector('input[name="sex"]:checked').nextElementSibling.textContent;
+            document.getElementById('ms-course').textContent = document.getElementById('course').options[document.getElementById('course').selectedIndex].text;
+            document.getElementById('ms-semester').textContent = document.getElementById('semester').value + ' Semester';
+            for (let i = 1; i <= 6; i++) {
+                const mark = parseInt(document.getElementById('subject' + i).value);
+                document.getElementById('ms-subject' + i).textContent = mark;
+                let remark = '';
+                if (mark >= 90) remark = 'Excellent';
+                else if (mark >= 80) remark = 'Very Good';
+                else if (mark >= 70) remark = 'Good';
+                else if (mark >= 60) remark = 'Satisfactory';
+                else if (mark >= 40) remark = 'Needs Improvement';
+                else remark = 'Fail';
+                
+                document.getElementById('ms-remark' + i).textContent = remark;
+            }
+            
+            document.getElementById('ms-total').textContent = total + ' / 600';
+            document.getElementById('ms-percentage').textContent = percentage + '%';
+            
+            const gradeElement = document.getElementById('ms-grade');
+            gradeElement.textContent = grade;
+            gradeElement.className = gradeClass;
+            
+            document.getElementById('ms-highest').textContent = highest;
+            document.getElementById('ms-lowest').textContent = lowest;
+            document.getElementById('marksheet').style.display = 'block';
+            document.getElementById('print-marksheet').style.display = 'flex';
+            document.getElementById('marksheet').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        });
+        
+        document.getElementById('reset').addEventListener('click', function() 
+            document.getElementById('regNumber').value = '';
+            document.getElementById('name').value = '';
+            document.getElementById('male').checked = true;
+            document.getElementById('course').value = '';
+            document.getElementById('semester').value = '';
+            
+            for (let i = 1; i <= 6; i++) {
+                document.getElementById('subject' + i).value = '';
+                document.getElementById('subject' + i).style.borderColor = '#e0e0e0';
+            }
+            document.getElementById('marksheet').style.display = 'none';
+            document.getElementById('print-marksheet').style.display = 'none';
+        });
+        
+        document.getElementById('print-marksheet').addEventListener('click', function()
+            setTimeout(() => {
+                window.print();
+            }, 500);
+        });
+    </script>
+</body>
+</html>
