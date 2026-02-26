@@ -1,0 +1,22 @@
+CREATE DATABASE collegedb;
+
+USE collegedb;
+
+-- Admin Table
+CREATE TABLE admintab (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(100) NOT NULL
+);
+
+-- Student Table
+CREATE TABLE studenttab (
+    regno VARCHAR(20) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    address TEXT,
+    contact VARCHAR(15),
+    email VARCHAR(100),
+    photo VARCHAR(255)
+);
+INSERT INTO admintab (username, password)
+VALUES ('admin', 'admin123');
