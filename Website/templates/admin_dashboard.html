@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+<a href="/logout" class="logout">Logout</a>
+
+<h3>User Registration List</h3>
+
+<table>
+<tr>
+    <th>ID</th>
+    <th>Username</th>
+    <th>Status</th>
+    <th>Action</th>
+</tr>
+
+{% for user in users %}
+<tr>
+    <td>{{ user[0] }}</td>
+    <td>{{ user[1] }}</td>
+    <td>{{ user[3] }}</td>
+    <td>
+        {% if user[3] == 'pending' %}
+        <a href="/approve/{{ user[0] }}" class="approve">Approve</a>
+        {% else %}
+        Approved
+        {% endif %}
+    </td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+CREATE DATABASE flaskproject;
+
+USE flaskproject;
+
+CREATE TABLE admintab (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    loginname VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL
+);
+
+
+
+CREATE TABLE usertab (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    status VARCHAR(20) DEFAULT 'pending'
+);
+
+INSERT INTO admintab (loginname, password)
+VALUES ('admin', 'admin123');
